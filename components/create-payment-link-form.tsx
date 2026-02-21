@@ -30,7 +30,7 @@ export function CreatePaymentLinkForm() {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label htmlFor="amount-usd" className="mb-1 block text-sm font-medium text-neutral-300">
-          Monto (USD)
+          Monto (MON)
         </label>
         <input
           id="amount-usd"
