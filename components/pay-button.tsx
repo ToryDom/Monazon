@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useAccount, useWriteContract, useWaitForTransactionReceipt } from "wagmi"
-import { monadTestnet } from "viem/chains"
-import { USDC_ADDRESS, ERC20_ABI } from "@/lib/chain"
+import { USDC_ADDRESS, ERC20_ABI, monadTestnet } from "@/lib/chain"
 
 interface PayButtonProps {
 sellerAddress: string

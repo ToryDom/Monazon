@@ -1,6 +1,6 @@
 import { http, createConfig } from "wagmi"
 import { injected } from "wagmi/connectors"
-import { monadTestnet } from "viem/chains"
+import { monadTestnet } from "@/lib/chain"
 
 export const config = createConfig({
 chains: [monadTestnet],

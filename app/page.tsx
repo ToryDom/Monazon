@@ -1,13 +1,19 @@
+import dynamic from "next/dynamic"
 import { products } from "@/lib/products"
 import { ProductCard } from "@/components/product-card"
-import { Navbar } from "@/components/navbar"
+
+const Navbar = dynamic(() => import("@/components/navbar").then((m) => ({ default: m.Navbar })), {
+  ssr: false,
+  loading: () => (
+    <header className="sticky top-0 z-50 border-b border-purple-900/30 bg-[#0a0a0f]/95 h-14" />
+  ),
+})
 
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
       <main className="mx-auto w-full max-w-7xl flex-1 px-6 py-10">
-        {/* Hero */}
         <div className="mb-10 rounded-2xl border border-purple-900/30 bg-gradient-to-r from-purple-900/30 via-[#12121a] to-purple-900/30 p-10 text-center">
           <h1 className="text-4xl font-bold text-white md:text-5xl">
             Bienvenido a{" "}
@@ -20,9 +26,8 @@ export default function HomePage() {
           </p>
         </div>
 
-        {/* Categorías */}
         <div className="mb-8 flex gap-3 overflow-x-auto pb-2">
-          {["Todos", "Hardware", "Ropa", "Accesorios"].map((cat) => (
+          {["Todos", "Instrumentos", "Tecnología", "Electrodomésticos"].map((cat) => (
             <span
               key={cat}
               className="shrink-0 cursor-pointer rounded-full border border-purple-800/50 bg-purple-900/20 px-4 py-1.5 text-sm text-purple-300 hover:bg-purple-900/40 transition"
@@ -32,7 +37,6 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Grid de productos */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
