@@ -1,38 +1,48 @@
-import Link from "next/link"
-import dynamic from "next/dynamic"
-import { Logo } from "@/components/logo"
-
-const ConnectWalletHome = dynamic(
-  () => import("@/components/connect-wallet-home").then((m) => ({ default: m.ConnectWalletHome })),
-  { ssr: false, loading: () => <div className="h-10 w-[140px] rounded-lg bg-neutral-800/50" /> }
-)
+import { products } from "@/lib/products"
+import { ProductCard } from "@/components/product-card"
+import { Navbar } from "@/components/navbar"
 
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <header className="border-b border-neutral-800 px-6 py-4">
-        <div className="mx-auto flex max-w-4xl items-center justify-between">
-          <Logo className="text-xl" href="/" />
-          <ConnectWalletHome />
+      <Navbar />
+      <main className="mx-auto w-full max-w-7xl flex-1 px-6 py-10">
+        {/* Hero */}
+        <div className="mb-10 rounded-2xl border border-purple-900/30 bg-gradient-to-r from-purple-900/30 via-[#12121a] to-purple-900/30 p-10 text-center">
+          <h1 className="text-4xl font-bold text-white md:text-5xl">
+            Bienvenido a{" "}
+            <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-fuchsia-500 bg-clip-text text-transparent">
+              Monazon
+            </span>
+          </h1>
+          <p className="mt-3 text-neutral-400 text-lg">
+            El marketplace de LATAM. Compra y paga con MON en Monad. 🚀
+          </p>
         </div>
-      </header>
-      <main className="mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center px-6 py-16">
-        <h1 className="text-center text-3xl font-bold text-white md:text-4xl">
-          Cobra en USDC con <span className="bg-gradient-to-r from-violet-400 via-purple-500 to-fuchsia-500 bg-clip-text text-transparent">Monazon</span>
-        </h1>
-        <p className="mt-4 max-w-md text-center text-neutral-400">
-          Conecta tu wallet, genera un link de pago con monto fijo y compártelo. Tu cliente paga en
-          stablecoin y tú ves el balance al instante.
-        </p>
-        <div className="mt-10 flex gap-4">
-          <Link
-            href="/dashboard"
-            className="rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-500"
-          >
-            Ir al dashboard
-          </Link>
+
+        {/* Categorías */}
+        <div className="mb-8 flex gap-3 overflow-x-auto pb-2">
+          {["Todos", "Hardware", "Ropa", "Accesorios"].map((cat) => (
+            <span
+              key={cat}
+              className="shrink-0 cursor-pointer rounded-full border border-purple-800/50 bg-purple-900/20 px-4 py-1.5 text-sm text-purple-300 hover:bg-purple-900/40 transition"
+            >
+              {cat}
+            </span>
+          ))}
+        </div>
+
+        {/* Grid de productos */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       </main>
+
+      <footer className="border-t border-purple-900/30 py-6 text-center text-sm text-neutral-600">
+        Monazon © 2025 — Powered by Monad
+      </footer>
     </div>
   )
 }

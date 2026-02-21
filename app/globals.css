@@ -3,11 +3,26 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0a0f;
-  --foreground: #fafafa;
+  --monad-purple: #836EF9;
+  --monad-purple-light: #A78BFA;
+  --monad-purple-dark: #6C3FE6;
+  --monad-black: #0a0a0f;
+  --monad-dark: #12121a;
+  --monad-gray: #1e1e2e;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  background-color: var(--monad-black);
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--monad-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--monad-purple);
+  border-radius: 4px;
 }
