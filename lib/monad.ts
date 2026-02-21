@@ -6,7 +6,7 @@ export const monadTestnet = defineChain({
   name: "Monad Testnet",
   nativeCurrency: { name: "MON", symbol: "MON", decimals: 18 },
   rpcUrls: {
-    default: { http: ["https://rpc.testnet.monad.xyz"] },
+    default: { http: ["https://testnet-rpc.monad.xyz"] },
   },
   blockExplorers: {
     default: { name: "MonadScan", url: "https://testnet.monadscan.com" },
@@ -19,7 +19,7 @@ const MONAD_CHAIN_ID_HEX = "0x279F"
 const ADD_CHAIN_PARAMS = {
   chainId: MONAD_CHAIN_ID_HEX,
   chainName: "Monad Testnet",
-  rpcUrls: ["https://rpc.testnet.monad.xyz"],
+  rpcUrls: ["https://testnet-rpc.monad.xyz"],
   nativeCurrency: { name: "MON", symbol: "MON", decimals: 18 },
   blockExplorerUrls: ["https://testnet.monadscan.com"],
 }
