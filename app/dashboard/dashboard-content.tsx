@@ -5,9 +5,10 @@ import { ConnectWallet } from "@/components/connect-wallet"
 import { BalanceDisplay } from "@/components/balance-display"
 import { BalanceMonDisplay } from "@/components/balance-mon-display"
 import { CreatePaymentLinkForm } from "@/components/create-payment-link-form"
+
 import { PaymentLinkCard } from "@/components/payment-link-card"
 import { getLinksBySeller } from "@/lib/actions"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 
 interface LinkItem {
   id: string
@@ -20,24 +21,24 @@ export function DashboardContent() {
   const [links, setLinks] = useState<LinkItem[]>([])
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
+  const fetchLinks = useCallback(async () => {
     if (!address) {
       setLinks([])
       return
     }
-    let cancelled = false
     setLoading(true)
-    getLinksBySeller(address)
-      .then((data) => {
-        if (!cancelled) setLinks(data)
-      })
-      .finally(() => {
-        if (!cancelled) setLoading(false)
-      })
-    return () => {
-      cancelled = true
+    try {
+      const data = await getLinksBySeller(address)
+      setLinks(data)
+    } finally {
+      setLoading(false)
     }
   }, [address])
+
+  useEffect(() => {
+
+        fetchLinks()
+  }, [fetchLinks])
 
   const baseUrl = typeof window !== "undefined" ? window.location.origin : ""
 
@@ -51,7 +52,8 @@ export function DashboardContent() {
         <div className="mt-6">
           <ConnectWallet />
         </div>
-      </section>
+
+              </section>
 
       {address && (
         <>
@@ -65,8 +67,9 @@ export function DashboardContent() {
           <section>
             <h3 className="mb-3 text-lg font-medium text-white">Nuevo link de pago</h3>
             <div className="max-w-md rounded-xl border border-neutral-700 bg-neutral-900/50 p-6">
-              <CreatePaymentLinkForm />
-            </div>
+              <CreatePaymentLinkForm onCreated={fetchLinks} />
+
+                          </div>
           </section>
           <section>
             <h3 className="mb-3 text-lg font-medium text-white">Tus links</h3>
@@ -81,7 +84,8 @@ export function DashboardContent() {
                     <PaymentLinkCard
                       id={link.id}
                       amount={link.amount}
-                      createdAt={link.createdAt}
+
+                                            createdAt={link.createdAt}
                       baseUrl={baseUrl}
                     />
                   </li>
@@ -94,3 +98,5 @@ export function DashboardContent() {
     </div>
   )
 }
+
+            
