@@ -11,20 +11,22 @@ export function BalanceMonDisplay() {
   const publicClient = usePublicClient()
   const [balanceMon, setBalanceMon] = useState<string | null>(null)
 
-  useEffect(() => {
+    useEffect(() => {
     if (!address || !publicClient) {
       setBalanceMon(null)
       return
     }
 
+    const addr = address
+
     async function fetchBalance() {
-      const value = await publicClient.getBalance({ address })
+      const value = await publicClient!.getBalance({ address: addr })
       setBalanceMon(formatEther(value))
     }
 
     fetchBalance()
     const intervalId = setInterval(fetchBalance, POLL_INTERVAL_MS)
-    return () => clearInterval(intervalId)
+          return () => clearInterval(intervalId)
   }, [address, publicClient])
 
   if (!address) return null
@@ -39,4 +41,5 @@ export function BalanceMonDisplay() {
       </p>
     </div>
   )
-}
+
+  }
