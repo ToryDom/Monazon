@@ -9,7 +9,7 @@ const MONAD_TESTNET_HEX = "0x279f"
 const ADD_CHAIN_PARAMS = {
   chainId: MONAD_TESTNET_HEX,
   chainName: "Monad Testnet",
-  rpcUrls: ["https://rpc.testnet.monad.xyz"],
+  rpcUrls: ["https://testnet-rpc.monad.xyz"],
   nativeCurrency: { name: "MON", symbol: "MON", decimals: 18 },
   blockExplorerUrls: ["https://testnet.monadscan.com"],
 }
