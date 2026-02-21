@@ -27,7 +27,7 @@ export const products: Product[] = [
     description:
       "Laptop para trabajo y estudio. Pantalla nítida, buen rendimiento y batería de larga duración. Perfecta para programar, diseñar o navegar.",
     price: 0.35,
-    image: "/productos/laptop.png",
+    image: "/productos/Laptop.png",
     category: "Tecnología",
     rating: 4.6,
     reviews: 89,
@@ -38,7 +38,7 @@ export const products: Product[] = [
     description:
       "Microondas de capacidad amplia, con grill y descongelado rápido. Fácil de usar y limpiar. Ahorra tiempo en la cocina todos los días.",
     price: 0.06,
-    image: "/productos/microondas.png",
+    image: "/productos/Microondas.png",
     category: "Electrodomésticos",
     rating: 4.5,
     reviews: 234,
@@ -49,7 +49,7 @@ export const products: Product[] = [
     description:
       "Licuadora o procesador Ninja, potencia profesional en tu cocina. Para smoothies, sopas, picar hielo y más. Diseño robusto y fácil de lavar.",
     price: 0.12,
-    image: "/productos/ninja.png",
+    image: "/productos/Ninja.png",
     category: "Electrodomésticos",
     rating: 4.8,
     reviews: 412,
@@ -60,7 +60,7 @@ export const products: Product[] = [
     description:
       "Producto Yamaha: calidad y sonido reconocidos. Ya sea instrumento musical, equipo de audio o moto, rendimiento confiable y durabilidad.",
     price: 0.22,
-    image: "/productos/yamaha.png",
+    image: "/productos/Yamaha.png",
     category: "Instrumentos",
     rating: 4.9,
     reviews: 278,
